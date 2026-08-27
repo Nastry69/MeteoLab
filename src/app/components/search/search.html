@@ -1,0 +1,24 @@
+<form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
+  <label class="search-form__label" for="city">Rechercher une ville</label>
+
+  <div class="search-form__row">
+    <input
+      id="city"
+      class="search-form__input"
+      type="text"
+      formControlName="city"
+      placeholder="Ex. Paris"
+      autocomplete="address-level2"
+      aria-describedby="city-error"
+      [attr.aria-invalid]="showInvalidMessage"
+    />
+
+    <button class="search-form__button" type="submit">Rechercher</button>
+  </div>
+
+  @if (showInvalidMessage) {
+    <p id="city-error" class="search-form__error" role="alert">
+      {{ invalidCityMessage }}
+    </p>
+  }
+</form>

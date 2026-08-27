@@ -1,0 +1,9 @@
+@if (loading()) {
+  <p class="feedback feedback--loading" role="status" aria-live="polite">
+    {{ loadingMessage }}
+  </p>
+} @else if (displayError()) {
+  <p class="feedback feedback--error" role="alert">
+    {{ displayError() }}
+  </p>
+}
