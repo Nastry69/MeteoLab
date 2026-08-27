@@ -1,0 +1,64 @@
+<section class="hero section">
+  <div class="container hero__inner">
+    <div class="hero__intro">
+      <span class="badge">Projet Angular &times; OpenWeather</span>
+      <h1 class="hero__title">
+        La météo de n'importe quelle ville, <span class="hero__accent">en un clic</span>.
+      </h1>
+      <p class="hero__lead text-muted">
+        MeteoLab interroge l'API OpenWeather et affiche la température, le ressenti, l'humidité et
+        le vent de la ville de votre choix. Saisissez une ville pour commencer.
+      </p>
+    </div>
+
+    <div class="hero__panel card">
+      <h2 class="hero__panel-title">Rechercher une ville</h2>
+
+      <!--
+        Emplacement du formulaire de recherche (composant app-search).
+        Il émet la ville saisie, que la page transmet à goToCity() pour
+        déclencher la navigation vers /weather/:city.
+      -->
+      <div class="hero__search"></div>
+
+      <div class="hero__shortcuts">
+        <p class="hero__shortcuts-label text-muted">Ou choisissez une ville :</p>
+        <ul class="hero__chips">
+          @for (city of popularCities; track city) {
+            <li>
+              <button class="chip" type="button" (click)="goToCity(city)">{{ city }}</button>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Zone de résultat : état vide tant qu'aucune recherche n'a abouti. -->
+      @if (lastCity(); as city) {
+        <div class="hero__result">
+          <p class="hero__result-label text-muted">Dernière ville consultée</p>
+          <a class="btn btn--primary" [routerLink]="['/weather', city]">
+            Revoir la météo de {{ city }}
+          </a>
+        </div>
+      } @else {
+        <p class="hero__empty alert" role="status">
+          Aucune recherche pour le moment. Le résultat s'affichera ici après votre première ville.
+        </p>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="visually-hidden">Ce que propose MeteoLab</h2>
+    <ul class="grid highlights">
+      @for (item of highlights; track item.title) {
+        <li class="card highlights__item">
+          <h3 class="highlights__title">{{ item.title }}</h3>
+          <p class="text-muted">{{ item.text }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
