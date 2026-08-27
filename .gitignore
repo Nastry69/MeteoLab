@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Clé API OpenWeather — ne jamais committer.
+# Le modèle versionné est src/environments/environment.example.ts
+/src/environments/environment.ts
