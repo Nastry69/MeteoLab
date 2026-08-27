@@ -21,15 +21,18 @@ export class Search {
     }),
   });
 
+  // Fonction qui récupère le champ ville du formulaire.
   get cityControl(): FormControl<string> {
     return this.searchForm.controls.city;
   }
 
+  // Fonction qui indique s'il faut afficher le message d'erreur du formulaire.
   get showInvalidMessage(): boolean {
     const control = this.cityControl;
     return control.invalid && (control.dirty || control.touched);
   }
 
+  // Fonction qui valide le formulaire et envoie la ville recherchée.
   onSubmit(): void {
     this.searchForm.markAllAsTouched();
 

@@ -10,9 +10,7 @@ export const WEATHER_MESSAGES = {
 
 export type WeatherErrorKind = 'not_found' | 'api_error' | 'rate_limit';
 
-/**
- * Associe un code HTTP OpenWeather au message affiché à l'utilisateur.
- */
+// Fonction qui renvoie le message d'erreur selon le code HTTP.
 export function messageFromHttpStatus(status: number): string {
   if (status === 404) {
     return WEATHER_MESSAGES.notFound;
@@ -23,9 +21,7 @@ export function messageFromHttpStatus(status: number): string {
   return WEATHER_MESSAGES.apiError;
 }
 
-/**
- * Associe un type d'erreur métier au message affiché.
- */
+// Fonction qui renvoie le message d'erreur selon le type d'erreur.
 export function messageFromErrorKind(kind: WeatherErrorKind): string {
   switch (kind) {
     case 'not_found':

@@ -28,6 +28,7 @@ export class Feedback {
 
   protected readonly loadingMessage = WEATHER_MESSAGES.loading;
 
+  // Fonction qui calcule le message d'erreur à afficher.
   readonly displayError = computed(() => {
     const custom = this.errorMessage();
     if (custom) {
