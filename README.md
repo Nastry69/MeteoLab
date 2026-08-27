@@ -11,7 +11,7 @@ rechargeable. Aucune donnée météo n'est écrite en dur : tout provient de l'A
 
 | Membre | Contribution |
 | --- | --- |
-| **Tristan** | Configuration de l'environnement, modèles de données, service météo (HttpClient, état, cache, erreurs), tests unitaires |
+| **Tristan** | Configuration de l'environnement, modèles de données, service météo (HttpClient, état, cache, erreurs), tests unitaires + fix formulaire, input ville et fix CSS |
 | **Dillon** | Routing, barre de navigation, pages Accueil et À propos, page 404, design system et thème clair/sombre |
 | **Diana** | Formulaire Reactive Forms, composant d'états de chargement et d'erreur, collection Postman |
 | **Melvyn** | Page météo, carte de résultat, prévisions à 5 jours |
