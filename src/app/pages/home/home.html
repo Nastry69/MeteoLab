@@ -15,11 +15,12 @@
       <h2 class="hero__panel-title">Rechercher une ville</h2>
 
       <!--
-        Emplacement du formulaire de recherche (composant app-search).
-        Il émet la ville saisie, que la page transmet à goToCity() pour
-        déclencher la navigation vers /weather/:city.
+        Le formulaire émet la ville saisie (citySubmit), que la page transmet à
+        goToCity() pour déclencher la navigation vers /weather/:city.
       -->
-      <div class="hero__search"></div>
+      <div class="hero__search">
+        <app-search (citySubmit)="goToCity($event)" />
+      </div>
 
       <div class="hero__shortcuts">
         <p class="hero__shortcuts-label text-muted">Ou choisissez une ville :</p>

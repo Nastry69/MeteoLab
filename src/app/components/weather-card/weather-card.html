@@ -1,0 +1,28 @@
+@let w = weather();
+
+<article class="card weather-card">
+  <header class="weather-card__header">
+    <h2 class="weather-card__city">{{ w.city }} <span class="weather-card__country">({{ w.country }})</span></h2>
+  </header>
+
+  <div class="weather-card__main">
+    <img class="weather-card__icon" [src]="w.iconUrl" [alt]="w.description" width="100" height="100" />
+    <p class="weather-card__temp">{{ w.temp }}&nbsp;°C</p>
+    <p class="weather-card__description">{{ w.description }}</p>
+  </div>
+
+  <dl class="weather-card__details">
+    <div class="weather-card__detail">
+      <dt class="text-muted">Ressenti</dt>
+      <dd>{{ w.feelsLike }}&nbsp;°C</dd>
+    </div>
+    <div class="weather-card__detail">
+      <dt class="text-muted">Humidité</dt>
+      <dd>{{ w.humidity }}&nbsp;%</dd>
+    </div>
+    <div class="weather-card__detail">
+      <dt class="text-muted">Vent</dt>
+      <dd>{{ w.windKmh }}&nbsp;km/h</dd>
+    </div>
+  </dl>
+</article>

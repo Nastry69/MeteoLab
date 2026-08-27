@@ -11,6 +11,7 @@ import {
   toCurrentWeather,
   toForecastDays,
 } from '../models/weather.model';
+import { messageFromHttpStatus } from '../shared/weather-messages';
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 
@@ -67,7 +68,7 @@ export class WeatherService {
         map(toCurrentWeather),
         tap((data) => this.writeCache(this.currentCache, key, data)),
         catchError((err: HttpErrorResponse) => {
-          this._error.set(errorMessage(err));
+          this._error.set(messageFromHttpStatus(err.status));
           return of(null);
         }),
         finalize(() => this._loading.set(false)),
@@ -140,16 +141,5 @@ export class WeatherService {
 
   private writeCache<T>(cache: Map<string, CacheEntry<T>>, key: string, data: T): void {
     cache.set(key, { data, expiresAt: Date.now() + CACHE_TTL_MS });
-  }
-}
-
-function errorMessage(err: HttpErrorResponse): string {
-  switch (err.status) {
-    case 404:
-      return 'Ville introuvable.';
-    case 429:
-      return 'Trop de requêtes, veuillez réessayer dans quelques instants.';
-    default:
-      return 'Impossible de récupérer les données météo.';
   }
 }

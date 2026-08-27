@@ -1,0 +1,19 @@
+@if (days().length > 0) {
+  <section class="forecast">
+    <h2 class="forecast__title">Prévisions à 5 jours</h2>
+
+    <ul class="forecast__list">
+      @for (day of days(); track day.date) {
+        <li class="card forecast__day">
+          <p class="forecast__label">{{ day.label }}</p>
+          <img class="forecast__icon" [src]="day.iconUrl" [alt]="day.description" width="50" height="50" />
+          <p class="forecast__temps">
+            <span class="forecast__max">{{ day.tempMax }}°</span>
+            <span class="forecast__min text-muted">{{ day.tempMin }}°</span>
+          </p>
+          <p class="forecast__description text-muted">{{ day.description }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+}

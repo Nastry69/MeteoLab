@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
+import { Search } from '../../components/search/search';
 import { WeatherService } from '../../services/weather.service';
 
 /** Une carte de présentation affichée sous le formulaire. */
@@ -15,7 +16,7 @@ interface Highlight {
  */
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, Search],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

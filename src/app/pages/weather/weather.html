@@ -1,5 +1,13 @@
 <section class="section">
-  <div class="container">
-    <h1>{{ city() }}</h1>
+  <div class="container weather-page">
+    <h1 class="weather-page__title">Météo de {{ city() }}</h1>
+
+    <!-- Chargement et erreurs : composant partagé, mêmes messages partout. -->
+    <app-feedback [loading]="loading()" [errorMessage]="error()" />
+
+    @if (weather(); as current) {
+      <app-weather-card [weather]="current" />
+      <app-forecast [days]="forecast()" />
+    }
   </div>
 </section>
