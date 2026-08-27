@@ -1,0 +1,56 @@
+<section class="section">
+  <div class="container about">
+    <header class="about__header">
+      <span class="badge">À propos</span>
+      <h1>MeteoLab</h1>
+      <p class="text-muted about__lead">
+        MeteoLab est une application web réalisée en groupe dans le cadre du module Angular et
+        communication vers une API. Elle permet de rechercher une ville et d'afficher sa météo
+        actuelle à partir des données fournies par l'API REST OpenWeather.
+      </p>
+    </header>
+
+    <div class="card about__block">
+      <h2>Fonctionnement</h2>
+      <p class="text-muted">
+        La ville saisie dans le formulaire de la page d'accueil est transmise au Router, qui
+        redirige vers <code>/weather/:city</code>. La page météo lit ce paramètre de route, puis
+        demande les données à un service Angular dédié. Ce service est le seul à parler à l'API :
+        les composants se contentent d'afficher l'état qu'il expose.
+      </p>
+      <ul class="about__flow">
+        <li><code>/home</code> : présentation et formulaire de recherche</li>
+        <li><code>/weather/:city</code> : météo de la ville lue depuis l'URL</li>
+        <li><code>/about</code> : cette page</li>
+      </ul>
+    </div>
+
+    <div class="card about__block">
+      <h2>Membres du groupe</h2>
+      <ul class="about__list">
+        @for (member of members; track member.name) {
+          <li class="about__member">
+            <span class="about__member-name">{{ member.name }}</span>
+            <span class="text-muted">{{ member.role }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="card about__block">
+      <h2>Technologies utilisées</h2>
+      <ul class="about__list">
+        @for (tech of technologies; track tech.name) {
+          <li class="about__tech">
+            <span class="badge">{{ tech.name }}</span>
+            <span class="text-muted">{{ tech.usage }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <p class="about__back">
+      <a class="btn btn--ghost" routerLink="/home">Retour à l'accueil</a>
+    </p>
+  </div>
+</section>
