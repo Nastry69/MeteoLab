@@ -266,6 +266,9 @@ img {
 
 .btn--primary:hover {
   background: var(--color-primary-hover);
+  /* Indispensable : sur un <a>, la regle a:hover (specificite 0,1,1) l'emporte
+     sur .btn--primary (0,1,0) et repeindrait le texte de la couleur du fond. */
+  color: var(--color-text-inverse);
 }
 
 .btn--ghost {
@@ -276,6 +279,7 @@ img {
 
 .btn--ghost:hover {
   background: var(--color-surface-muted);
+  color: var(--color-text);
 }
 
 /* Pastille cliquable : raccourcis de navigation, tags. */
