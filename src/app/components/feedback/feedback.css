@@ -1,0 +1,18 @@
+.feedback {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.feedback--loading {
+  color: #1f3b5b;
+  background: #e8f0f8;
+  border: 1px solid #b7c9dc;
+}
+
+.feedback--error {
+  color: #7a1c14;
+  background: #fceceb;
+  border: 1px solid #e8b4af;
+}

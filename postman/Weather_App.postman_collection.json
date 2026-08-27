@@ -1,0 +1,313 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Weather App",
+    "description": "Collection Postman pour MeteoLab.\n\nObjectif : tester les endpoints OpenWeather utilisés par l'application Angular avant l'intégration HttpClient.\n\nVariables :\n- {{base_url}} : URL de base de l'API\n- {{api_key}} : clé API OpenWeather (à renseigner localement, ne pas committer la vraie clé)\n- {{city}} : ville recherchée\n\nMéthode générale : GET + paramètres de query q, units, lang, APPID.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.openweathermap.org/data/2.5"
+    },
+    {
+      "key": "api_key",
+      "value": "VOTRE_CLE_API"
+    },
+    {
+      "key": "city",
+      "value": "Paris"
+    }
+  ],
+  "item": [
+    {
+      "name": "Current Weather",
+      "description": "Météo actuelle d'une ville (endpoint /weather).\nRéponse attendue : name, sys.country, main.temp, main.feels_like, weather[0].description, weather[0].icon, main.humidity, wind.speed.\nParamètre units=metric pour obtenir les températures en Celsius.",
+      "item": [
+        {
+          "name": "Paris",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q=Paris&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Paris",
+                  "description": "Nom de la ville"
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "description": "Températures en Celsius"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr",
+                  "description": "Descriptions en français"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}",
+                  "description": "Clé API OpenWeather"
+                }
+              ]
+            },
+            "description": "Objectif : récupérer la météo actuelle de Paris.\nMéthode : GET\nRéponse attendue : JSON 200 avec température, ressenti, humidité, vent et icône.\nDonnées utiles : name, sys.country, main.*, weather[0].*, wind.speed."
+          },
+          "response": []
+        },
+        {
+          "name": "Lille",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q=Lille&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Lille",
+                  "description": "Nom de la ville"
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "description": "Températures en Celsius"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr",
+                  "description": "Descriptions en français"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}",
+                  "description": "Clé API OpenWeather"
+                }
+              ]
+            },
+            "description": "Objectif : récupérer la météo actuelle de Lille.\nMéthode : GET\nRéponse attendue : JSON 200.\nDonnées utiles : name, sys.country, main.*, weather[0].*, wind.speed."
+          },
+          "response": []
+        },
+        {
+          "name": "Tokyo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q=Tokyo&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Tokyo",
+                  "description": "Nom de la ville"
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "description": "Températures en Celsius"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr",
+                  "description": "Descriptions en français"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}",
+                  "description": "Clé API OpenWeather"
+                }
+              ]
+            },
+            "description": "Objectif : récupérer la météo actuelle de Tokyo.\nMéthode : GET\nRéponse attendue : JSON 200.\nDonnées utiles : name, sys.country, main.*, weather[0].*, wind.speed."
+          },
+          "response": []
+        },
+        {
+          "name": "Ville dynamique ({{city}})",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q={{city}}&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{city}}",
+                  "description": "Ville définie par la variable de collection"
+                },
+                {
+                  "key": "units",
+                  "value": "metric"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Objectif : tester n'importe quelle ville via la variable {{city}}.\nModifier la variable city dans la collection puis relancer la requête."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Forecast",
+      "description": "Prévisions sur 5 jours / 3 heures (endpoint /forecast).\nUtile pour la fonctionnalité libre du projet (prévisions).",
+      "item": [
+        {
+          "name": "Prévisions 5 jours - Paris",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast?q=Paris&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["forecast"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Paris",
+                  "description": "Nom de la ville"
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "description": "Températures en Celsius"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Objectif : récupérer les prévisions 5 jours pour Paris.\nMéthode : GET\nRéponse attendue : JSON 200 avec city et list[] (créneaux de 3 h).\nDonnées utiles : city.name, city.country, list[].dt_txt, list[].main.temp, list[].weather[0].description, list[].weather[0].icon."
+          },
+          "response": []
+        },
+        {
+          "name": "Prévisions 5 jours - {{city}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast?q={{city}}&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["forecast"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{city}}"
+                },
+                {
+                  "key": "units",
+                  "value": "metric"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Objectif : prévisions 5 jours pour la ville définie par {{city}}."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tests",
+      "description": "Requêtes pour vérifier le comportement en erreur (ville inexistante, clé invalide).",
+      "item": [
+        {
+          "name": "Ville inexistante (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q=VilleQuiNExistePas123&units=metric&lang=fr&APPID={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "VilleQuiNExistePas123"
+                },
+                {
+                  "key": "units",
+                  "value": "metric"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr"
+                },
+                {
+                  "key": "APPID",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Objectif : simuler une ville introuvable.\nRéponse attendue : HTTP 404.\nMessage applicatif prévu : « Ville introuvable. »"
+          },
+          "response": []
+        },
+        {
+          "name": "Clé API invalide (401)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/weather?q=Paris&units=metric&lang=fr&APPID=cle_invalide",
+              "host": ["{{base_url}}"],
+              "path": ["weather"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Paris"
+                },
+                {
+                  "key": "units",
+                  "value": "metric"
+                },
+                {
+                  "key": "lang",
+                  "value": "fr"
+                },
+                {
+                  "key": "APPID",
+                  "value": "cle_invalide"
+                }
+              ]
+            },
+            "description": "Objectif : simuler une erreur d'authentification API.\nRéponse attendue : HTTP 401.\nMessage applicatif prévu : « Impossible de récupérer les données météo. »"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
